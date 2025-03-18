@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang=en
+	xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>
+	<a th:href="@{/catoadd}">ADD CATOGIRY</a>
+	</h1>
+	<table border=1>
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>CATOGIRYNAME</th>
+			<th>ACTION</th>
+		</tr>
+		<tr th:each="catogir:${catogiry}">
+			<td th:text="${catogir.id}"></td>
+			<td th:text="${catogir.cato_name}"></td> 
+			<td >
+			<a th:href="@{catogiry/edit/{id}(id=${catogir.id})}">edit</a>
+			<a th:href="@{catogiry/delete/{id}(id=${catogir.id})}"onclick="return conform(are u sure)">delete</a>
+			</td>
+		</tr>
+		</thead>	
+	
+	
+	</table>
+</body>
+</html>

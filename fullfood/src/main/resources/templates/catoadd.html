@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang=en
+	xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+<meta charset="UTF-8">
+<title>cato add</title>
+</head>
+<body>
+	<h2>catogiry add</h2>
+	<form th:action="@{/catoadd}" th:object="${catoadd}" method="post">
+	
+	<label>item name</label>
+	<input type="text" id="*{name}" name="cato_name" required >
+	<button type="submit">save</button>
+	
+	
+	
+	</form>
+	
+
+</body>
+</html>
