@@ -33,6 +33,13 @@ Postman (for API testing)
 Git & GitHub
 
 # Installation
-📥 Clone the Repository
+📥 Clone the Repository:
 
-git clone >https://github.com/Prakash123456780/Ecommerce-web-site
+git clone https://github.com/Prakash123456780/Ecommerce-web-site
+
+Install required dependencies: pip install requests
+
+Start the server on Eclipse
+
+# 🙌 Contributing
+Contributions are welcome! Please fork the repository and create a pull request.
