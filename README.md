@@ -1,45 +1,74 @@
-# E-Commerce Website
-This is a full-stack E-Commerce web application that allows users to browse products, add items to a cart, and complete a checkout process. Admins can manage product listings, orders, and users.
-# 🚀 Features
+# 🛒 E-Commerce Web Application
 
-• User authentication (login/register)
+This is a simple **E-Commerce Web Application** built using **Spring Boot**. It demonstrates the basic structure of an online store, including products and user management. This project showcases a clean backend architecture with REST APIs and uses H2 for the database.
 
-• Product listings with categories
+## 🚀 Features
 
-• Product search and filters
+- Add and manage products
+- Add and manage users
+- View product list
+- View user list
+- RESTful API design
+- In-memory H2 database integration
 
-• Shopping cart and checkout
+## 🛠️ Technologies Used
 
-• Order history
-# 🛠️ Tech Stack
-> Frontend:
+- Java 17
+- Spring Boot
+- Spring Data JPA
+- H2 Database
+- Maven
+- Lombok
 
-• HTML, CSS, JavaScript
 
-> Backend:
+## 📡 API Endpoints
 
-• Java + Spring Boot
+### 🔹 Product APIs
 
-RESTful APIs
+| Method | Endpoint            | Description         |
+|--------|---------------------|---------------------|
+| GET    | `/products`         | Get all products    |
+| GET    | `/products/{id}`    | Get product by ID   |
+| POST   | `/products`         | Create new product  |
+| PUT    | `/products/{id}`    | Update a product    |
+| DELETE | `/products/{id}`    | Delete a product    |
 
-> Database:
+### 🔹 User APIs
 
-• MySQL 
+| Method | Endpoint         | Description        |
+|--------|------------------|--------------------|
+| GET    | `/users`         | Get all users      |
+| GET    | `/users/{id}`    | Get user by ID     |
+| POST   | `/users`         | Create new user    |
+| PUT    | `/users/{id}`    | Update a user      |
+| DELETE | `/users/{id}`    | Delete a user      |
 
-> Tools:
+## ⚙️ Configuration
 
-• Postman (for API testing)
+Example of `application.properties`:
 
-• Git & GitHub
+```properties
+spring.datasource.url=jdbc:h2:mem:ecommercedb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.h2.console.enabled=true
+spring.jpa.hibernate.ddl-auto=update
+```
+# 🧪 How to Run
+> Clone the repository:
+```
+git clone https://github.com/Prakash123456780/Ecommerce-web-site.git
+cd Ecommerce-web-site
+```
+> Build the project:
+```
+mvn clean install
+```
+> Run the Spring Boot application:
+```
+mvn spring-boot:run
+```
+The app will be available at http://localhost:8080.
 
-# Installation
-📥 Clone the Repository:
-
-git clone https://github.com/Prakash123456780/Ecommerce-web-site
-
-Install required dependencies: pip install requests
-
-Start the server on Eclipse
-
-# 🙌 Contributing
-Contributions are welcome! Please fork the repository and create a pull request.
