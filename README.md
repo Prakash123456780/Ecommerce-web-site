@@ -2,35 +2,35 @@
 This is a full-stack E-Commerce web application that allows users to browse products, add items to a cart, and complete a checkout process. Admins can manage product listings, orders, and users.
 # 🚀 Features
 
-User authentication (login/register)
+• User authentication (login/register)
 
-Product listings with categories
+• Product listings with categories
 
-Product search and filters
+• Product search and filters
 
-Shopping cart and checkout
+• Shopping cart and checkout
 
-Order history
+• Order history
 # 🛠️ Tech Stack
-Frontend:
+> Frontend:
 
-HTML, CSS, JavaScript
+• HTML, CSS, JavaScript
 
-Backend:
+> Backend:
 
-Java + Spring Boot
+• Java + Spring Boot
 
 RESTful APIs
 
-Database:
+> Database:
 
-MySQL 
+• MySQL 
 
-Tools:
+> Tools:
 
-Postman (for API testing)
+• Postman (for API testing)
 
-Git & GitHub
+• Git & GitHub
 
 # Installation
 📥 Clone the Repository:
