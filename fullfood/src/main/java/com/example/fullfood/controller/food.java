@@ -77,21 +77,27 @@ public class food {
 		return "redirect:/catogiry";
 	}
 	@GetMapping("catogiry/edit/{id}")
-	public String editcato(@PathVariable Integer id ,Model mo) {
-		Optional<catogiry> cata=serv.editcato(id);
-		if(cata.isPresent()) {
-			mo.addAttribute("catogiry", cata);
-		}
-		return "catoadd";
+	public String editcato(@PathVariable(value = "id") Integer id, Model model) {
+	    Optional<catogiry> optionalCato = serv.editcato(id);
+	    if (optionalCato.isPresent()) {
+	        model.addAttribute("catoadd", optionalCato.get());
+	        return "catoadd";
+	    } else {
+	        // Option 1: Redirect to a list page with error message
+	        return "redirect:/catogiry/list?error=notfound";
+
+	        // Option 2: Or show a 404 page
+	        // throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found");
+	    }
 	}
-	
+
 	@GetMapping("catogiry/delete/{id}")
 	public String deletecato(@PathVariable Integer id) {
 		serv.deletecato(id);
 		
 		return "redirect:/catogiry";
 	}
-	@GetMapping("product")
+	@GetMapping("/product")
 	public String listpro(Model mo) {
 		mo.addAttribute("product", ser.listpro());
 		return "product";
@@ -107,9 +113,31 @@ public class food {
 		ser.savepro(p);
 		return "redirect:/product";
 	}
-	//@GetMapping("/product/delete/{id}")
-	//public String delete(@PathVariable Integer )
+	@GetMapping("product/delete/{id}")
+	public String deleteprod(@PathVariable Integer id) {
+		ser.deleteid(id);
+		
+		return "redirect:/product";
+	}
+	@GetMapping("/product/edit/{id}")
+	public String editProduct(@PathVariable Integer id, Model model) {
+	    Optional<Product> product = ser.fetchid(id);
+	    if (product.isPresent()) {
+	        model.addAttribute("productdto", product.get());
+	        model.addAttribute("catogiry", serv.listcato());
+	        return "prodadd";
+	    } else {
+	        return "redirect:/product?error=notfound";
+	    }
+	}
+	@PostMapping("/product/update")
+	public String updateProduct(@ModelAttribute Product p) {
+	    ser.savepro(p); // update if proid exists
+	    return "redirect:/product";
+	}
+	
 
+	
 	
 
 }
