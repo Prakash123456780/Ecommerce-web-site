@@ -70,5 +70,5 @@ mvn clean install
 ```
 mvn spring-boot:run
 ```
-The app will be available at http://localhost:8080.
+The app will be available at http://localhost:8082.
 
