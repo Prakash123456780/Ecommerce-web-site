@@ -30,4 +30,8 @@ public class prodserv {
 	public List<Product> procatid(int id) {
 		return prorepo.findAllByCatogiry_id(id);
 	}
+	 public Product getById(int proid) {
+	        return prorepo.findById(proid).orElse(null);
+    }
+
 }
