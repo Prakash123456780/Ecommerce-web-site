@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Shop</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        ul li {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 500px;
+            border-left: 6px solid #007BFF;
+        }
+
+        .product-card h3 {
+            margin-top: 0;
+            color: #444;
+        }
+
+        .product-card p {
+            color: #555;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        a.back-link {
+            color: #555;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        a.back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shop</h1>
+
+    <!-- Category Links -->
+    <h2>Categories</h2>
+    <ul>
+        <li><a th:href="@{/shop}">All Products</a></li>
+        <li th:each="c : ${catogiry}">
+            <a th:href="@{/shop/category/{id}(id=${c.id})}" th:text="${c.cato_name}">Category Name</a>
+        </li>
+    </ul>
+
+    <!-- Product List -->
+    <h2>Products</h2>
+    <div th:each="p : ${productdto}" class="product-card">
+        <h3 th:text="${p.proname}">Product Name</h3>
+        <p th:text="${p.description}">Product Description</p>
+        <p>Price: ₹<span th:text="${p.price}">0</span></p>
+        <form th:action="@{/cart/add/{id}(id=${p.proid})}" method="post">
+            <button type="submit">Book / Add to Cart</button>
+        </form>
+        <a class="back-link" th:href="@{/shop}">← Back to Shop</a>
+    </div>
+</body>
+</html>
