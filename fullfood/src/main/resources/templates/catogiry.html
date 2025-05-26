@@ -1,33 +1,206 @@
 <!DOCTYPE html>
-<html lang=en
+<html lang="en"
 	xmlns:th="http://www.thymeleaf.org"
 >
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Management</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Main heading and add button */
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 a {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            display: inline-block;
+        }
+
+        h1 a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Table container */
+        .table-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1rem;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        th {
+            padding: 15px 20px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #e1e5e9;
+            transition: background-color 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        td {
+            padding: 15px 20px;
+            color: #333;
+        }
+
+        /* Action buttons */
+        td a {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-right: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        /* Edit button */
+        td a[href*="edit"] {
+            background-color: #28a745;
+            color: white;
+        }
+
+        td a[href*="edit"]:hover {
+            background-color: #218838;
+            transform: translateY(-1px);
+        }
+
+        /* Delete button */
+        td a[href*="delete"] {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        td a[href*="delete"]:hover {
+            background-color: #c82333;
+            transform: translateY(-1px);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 a {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 10px 15px;
+            }
+
+            th {
+                font-size: 1rem;
+            }
+
+            td a {
+                padding: 4px 8px;
+                font-size: 0.8rem;
+                margin-right: 4px;
+                margin-bottom: 4px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .table-container {
+                margin: 0 5px;
+            }
+
+            th, td {
+                padding: 8px 10px;
+            }
+
+            td a {
+                display: block;
+                margin-bottom: 5px;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
-	<h1>
-	<a th:href="@{/catoadd}">ADD CATOGIRY</a>
-	</h1>
-	<table border=1>
-		<thead>
-		<tr>
-			<th>ID</th>
-			<th>CATOGIRYNAME</th>
-			<th>ACTION</th>
-		</tr>
-		<tr th:each="catogir:${catogiry}">
-			<td th:text="${catogir.id}"></td>
-			<td th:text="${catogir.cato_name}"></td> 
-			<td >
-			<a th:href="@{catogiry/edit/{id}(id=${catogir.id})}">edit</a>
-			<a th:href="@{catogiry/delete/{id}(id=${catogir.id})}"onclick="return conform(are u sure)">delete</a>
-			</td>
-		</tr>
-		</thead>	
-	
-	
-	</table>
+    <h1>
+        <a th:href="@{/catoadd}">ADD CATEGORY</a>
+    </h1>
+    
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>CATEGORY NAME</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="catogir:${catogiry}">
+                    <td th:text="${catogir.id}"></td>
+                    <td th:text="${catogir.cato_name}"></td> 
+                    <td>
+                        <a th:href="@{catogiry/edit/{id}(id=${catogir.id})}">Edit</a>
+                        <a th:href="@{catogiry/delete/{id}(id=${catogir.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
