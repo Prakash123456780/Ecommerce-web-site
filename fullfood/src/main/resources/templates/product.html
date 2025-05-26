@@ -1,14 +1,77 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Product Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .button-link {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 4px;
+        }
+
+        .button-link:hover {
+            background-color: #218838;
+        }
+
+        .delete-link {
+            background-color: #dc3545;
+        }
+
+        .delete-link:hover {
+            background-color: #c82333;
+        }
+    </style>
 </head>
 <body>
     <h1>Product</h1>
     <h2>
-        <a th:href="@{/prodadd}">Add Product</a>
+        <a class="button-link" th:href="@{/prodadd}">Add Product</a>
     </h2>
     <table>
         <thead>
@@ -25,8 +88,12 @@
                 <td th:text="${prod.proid}"></td>
                 <td th:text="${prod.proname}"></td>
                 <td th:text="${prod.catogiry.cato_name}"></td>
-                <td><a th:href="@{/product/edit/{id}(id=${prod.proid})}">Edit</a></td>
-                <td><a th:href="@{/product/delete/{id}(id=${prod.proid})}">Delete</a></td>
+                <td>
+                    <a class="button-link" th:href="@{/product/edit/{id}(id=${prod.proid})}">Edit</a>
+                </td>
+                <td>
+                    <a class="button-link delete-link" th:href="@{/product/delete/{id}(id=${prod.proid})}">Delete</a>
+                </td>
             </tr>
         </tbody>
     </table>
