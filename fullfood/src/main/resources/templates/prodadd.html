@@ -3,25 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <title>Product Add</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            margin-top: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        h2 {
+            text-align: center;
+            color: #444;
+        }
+    </style>
 </head>
 <body>
-    <form th:action="@{/prodadd}" th:object="${productdto}" method="post">
+    <form th:action="@{${productdto.proid} != null ? '/product/update' : '/prodadd'}"
+          th:object="${productdto}" method="post">
+
+        <h2>Add / Update Product</h2>
+
+        <input type="hidden" th:field="*{proid}" />
+
         <label>Product Description</label>
         <input type="text" th:field="*{description}" required>
 
         <label>Product Image</label>
-        <input type="text" th:field="*{image}" required>
+        <input type="text" th:field="*{imagename}" required>
 
         <label>Product Price</label>
         <input type="number" th:field="*{price}" required>
 
         <label>Product Name</label>
-        <input type="text" th:field="*{name}" required>
+        <input type="text" th:field="*{proname}" required>
 
         <label>Product Weight</label>
         <input type="number" th:field="*{weight}" required>
 
-        
+        <label>Category</label>
+        <select th:field="*{catogiry.id}">
+            <option th:each="c : ${catogiry}" th:value="${c.id}" th:text="${c.cato_name}"></option>
+        </select>
+
         <button type="submit">Save</button>
     </form>
 </body>
