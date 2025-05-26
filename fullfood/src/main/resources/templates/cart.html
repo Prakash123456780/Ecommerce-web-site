@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Your Cart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 600px;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        b {
+            font-weight: 600;
+            color: #222;
+        }
+
+        span {
+            color: #007bff;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #444;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            margin-top: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .back-link a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .user-info, form {
+            margin-top: 30px;
+        }
+
+        .user-info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Your Cart</h1>
+
+    <div th:if="${#lists.isEmpty(cartItems)}">
+        <p>Your cart is empty.</p>
+    </div>
+
+    <div th:if="${!#lists.isEmpty(cartItems)}">
+        <ul>
+            <li th:each="item : ${cartItems}">
+                <b th:text="${item.proname}">Product Name</b> - ₹<span th:text="${item.price}">0</span>
+            </li>
+        </ul>
+
+        <h3>Total Amount: ₹<span th:text="${totalAmount}">0</span></h3>
+
+        <div class="back-link">
+            <a th:href="@{/shop}">← Continue Shopping</a>
+        </div>
+    </div>
+
+    <div class="user-info" th:if="${user != null}">
+        <h2>User Information</h2>
+        <p><strong>Username:</strong> <span th:text="${user.username}">Username</span></p>
+        <p><strong>Email:</strong> <span th:text="${user.email}">Email</span></p>
+        <p><strong>Location:</strong> <span th:text="${user.location}">Location</span></p>
+        <p><strong>Password:</strong> <span th:text="${user.password}">Password</span></p>
+    </div>
+
+    <form th:action="@{/placeOrder}" method="post">
+        <h2>Shipping Details</h2>
+        <label>Username:</label>
+        <input type="text" name="username" required>
+
+        <label>Location:</label>
+        <input type="text" name="location" required>
+
+        <label>Phone:</label>
+        <input type="text" name="phone" required>
+
+        <button class="btn" type="submit">Place Order</button>
+    </form>
+</div>
+</body>
+</html>
