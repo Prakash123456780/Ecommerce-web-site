@@ -1,19 +1,93 @@
 <!DOCTYPE html>
-<html lang=en
-	xmlns:th="http://www.thymeleaf.org"
->
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Food home page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food home page</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Main heading */
+        h1 {
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        /* Navigation container */
+        div {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Button styles */
+        .btn {
+            background: white;
+            color: #ff6b35;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid transparent;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: white;
+            border-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+            
+            div {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>Fast Foods</h1>
-<div>
-	<a th:href="home" class=btn>Home</a>
-	<a th:href="shop" class=btn>Shop</a>
-	<a th:href="login" class=btn>Admin</a>
-
-</div>
-
+    <h1>Fast Foods</h1>
+    <div>
+        <a href="home" class="btn">Home</a>
+        <a href="shop" class="btn">Shop</a>
+        <a href="login" class="btn">Admin</a>
+    </div>
 </body>
 </html>
